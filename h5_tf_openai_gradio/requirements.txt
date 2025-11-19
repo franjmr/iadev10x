@@ -1,0 +1,7 @@
+tensorflow
+Pillow
+numpy
+OpenAI
+python-dotenv
+scikit-learn
+gradio
