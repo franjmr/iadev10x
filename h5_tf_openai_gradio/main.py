@@ -1,6 +1,5 @@
 import tensorflow as tf
 import numpy as np
-from PIL import Image
 import os
 from openai import OpenAI
 from dotenv import load_dotenv

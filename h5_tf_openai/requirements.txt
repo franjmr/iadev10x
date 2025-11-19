@@ -1,7 +1,6 @@
-tensorflow
-Pillow
-numpy
-OpenAI
-python-dotenv
-scikit-learn
-gradio
+tensorflow==2.20.0
+Pillow==11.3.0
+numpy==2.2.6
+openai==2.8.1
+python-dotenv==1.2.1
+scikit-learn==1.7.2
