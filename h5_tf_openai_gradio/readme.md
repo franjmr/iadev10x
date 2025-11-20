@@ -29,6 +29,8 @@ venv\Scripts\activate
 pip install -r requirements.txt
 # Or install manually
 pip install tensorflow pillow numpy
+## Get Versions from requirements.txt
+pip list | Select-String "tensorflow|Pillow|numpy|openai|python-dotenv|scikit-learn|gradio|transformers|torch|torchvision|easyocr"
 ```
 ### Deactivate the virtual environment when done
 ```bash
