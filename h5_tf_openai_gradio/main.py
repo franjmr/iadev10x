@@ -61,6 +61,9 @@ def load_model_choice(vision_extraction_method):
         print("TrOCR cargado correctamente.")
     else:
         print("No se seleccionó ningún modelo de visión.")
+        ## Alternatives
+        # https://github.com/deepseek-ai/DeepSeek-OCR
+        # https://ai.google.dev/gemma/docs/embeddinggemma?hl=es-419
         blip_processor, blip_model = None, None
         trco_processor, trco_model = None, None
 
