@@ -1,0 +1,23 @@
+pandas
+matplotlib
+seaborn
+
+# LangChain ecosystem - Versiones compatibles
+langchain
+langchain-chroma
+langchain-community
+langchain-openai
+langchain-core
+langchain-text-splitters
+
+# Vector DB
+chromadb
+
+# Embeddings
+sentence-transformers
+
+# OpenAI
+openai
+
+# Utils
+python-dotenv
