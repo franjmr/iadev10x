@@ -23,7 +23,7 @@ vectorstore = Chroma(
     embedding_function=embedding,
 )
 
-retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+retriever = vectorstore.as_retriever(search_kwargs={"k": 6})
 
 # ========= OpenAI LLM =========
 llm = ChatOpenAI(
@@ -36,6 +36,7 @@ llm = ChatOpenAI(
 prompt = ChatPromptTemplate.from_template("""
 Eres un asistente experto en tarjetas gráficas retro y modernas.
 Usa exclusivamente el siguiente contexto para responder.
+Responde de manera breve y concisa.
 
 CONTEXTO:
 {context}

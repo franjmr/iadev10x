@@ -24,7 +24,7 @@
             "justMyCode": true
         },
         {
-            "name": "Python Debugger: rag_analyze_dataset",
+            "name": "Python Debugger: rag_langchain",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
