@@ -24,23 +24,29 @@ def create_embedding_text(row):
     def v(x):
         return str(x) if pd.notna(x) else "desconocido"
 
+    brand = v(row['Brand'])
+    name = v(row['Name'])
+    gpu_name = v(row['Graphics Processor__GPU Name'])
+    arch = v(row['Graphics Processor__Architecture'])
+    year = v(row['Release_Year_Normalized'])
+    mem_size = v(row['Memory__Memory Size'])
+    mem_type = v(row['Memory__Memory Type'])
+    mem_bus = v(row['Memory__Memory Bus'])
+    interface = v(row['Graphics Card__Bus Interface'])
+    tdp = v(row['Board Design__TDP'])
+    shading = v(row['Render Config__Shading Units'])
+    fp32 = v(row['Theoretical Performance__FP32 (float)'])
+    directx = v(row['Graphics Features__DirectX'])
+    opengl = v(row['Graphics Features__OpenGL'])
+    shader = v(row['Graphics Features__Shader Model'])
+
     return (
-        f"Marca {v(row['Brand'])}. "
-        f"Modelo {v(row['Name'])}. "
-        f"Procesador Gráfico o GPU {v(row['Graphics Processor__GPU Name'])}. "
-        f"Arquitectura {v(row['Graphics Processor__Architecture'])}. "
-        f"Año {v(row['Release_Year_Normalized'])}. "
-        f"Tamaño Memoria: {v(row['Memory__Memory Size'])} "
-        f"Tipo Memoria: {v(row['Memory__Memory Type'])}, "
-        f"Bus Memoria: {v(row['Memory__Memory Bus'])}. "
-        f"Interfaz: {v(row['Graphics Card__Bus Interface'])}. "
-        f"TDP {v(row['Board Design__TDP'])}. "
-        f"{v(row['Render Config__Shading Units'])} shading units. "
-        f"FP32: {v(row['Theoretical Performance__FP32 (float)'])}. "
-        f"DirectX {v(row['Graphics Features__DirectX'])}, "
-        f"OpenGL {v(row['Graphics Features__OpenGL'])}, "
-        f"Shader Model {v(row['Graphics Features__Shader Model'])}. "
-        f"Resolución recomendada: {v(row['Recommended Resolutions'])}."
+        f"El modelo '{name}' fue fabricado por la marca '{brand}' en el año {year}. "
+        f"Tiene un procesador gráfico (GPU) '{gpu_name}' basado en la arquitectura {arch}. "
+        f"Cuenta con {mem_size} de memoria {mem_type} con un bus de {mem_bus}. "
+        f"Utiliza interfaz {interface} y tiene un consumo energético (TDP) de {tdp}. "
+        f"Posee {shading} unidades de sombreado y un rendimiento FP32 de {fp32}. "
+        f"Es compatible con DirectX {directx}, OpenGL {opengl} y Shader Model {shader}. "
     )
 
 
