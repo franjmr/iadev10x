@@ -1,7 +1,6 @@
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 import chromadb
-from chromadb.config import Settings
 import os
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -26,11 +25,14 @@ def create_embedding_text(row):
         return str(x) if pd.notna(x) else "desconocido"
 
     return (
-        f"{v(row['Brand'])} {v(row['Name'])}. "
+        f"Marca {v(row['Brand'])}. "
+        f"Modelo {v(row['Name'])}. "
+        f"Procesador Gráfico o GPU {v(row['Graphics Processor__GPU Name'])}. "
         f"Arquitectura {v(row['Graphics Processor__Architecture'])}. "
         f"Año {v(row['Release_Year_Normalized'])}. "
-        f"Memoria: {v(row['Memory__Memory Size'])} {v(row['Memory__Memory Type'])}, "
-        f"bus {v(row['Memory__Memory Bus'])}. "
+        f"Tamaño Memoria: {v(row['Memory__Memory Size'])} "
+        f"Tipo Memoria: {v(row['Memory__Memory Type'])}, "
+        f"Bus Memoria: {v(row['Memory__Memory Bus'])}. "
         f"Interfaz: {v(row['Graphics Card__Bus Interface'])}. "
         f"TDP {v(row['Board Design__TDP'])}. "
         f"{v(row['Render Config__Shading Units'])} shading units. "
@@ -41,12 +43,25 @@ def create_embedding_text(row):
         f"Resolución recomendada: {v(row['Recommended Resolutions'])}."
     )
 
+
+def clean_metadata(row):
+    meta = {}
+    for key, val in row.items():
+        if pd.isna(val):
+            continue
+        if isinstance(val, (int, float, bool)):
+            meta[key] = val
+        else:
+            meta[key] = str(val)
+    return meta
+
+
 # ============================
 # 4. Crear embeddings para Chroma
 # ============================
 
 # Inicializar Chroma con PersistentClient (nueva API)
-client = chromadb.PersistentClient(path="./gpu_rag_chroma")
+client = chromadb.PersistentClient(path=f"{CURRENT_DIR}/gpu_rag_chroma")
 
 collection = client.get_or_create_collection(
     name="gpu_rag",
@@ -65,22 +80,15 @@ for idx, row in df.iterrows():
     texts.append(text)
     ids.append(f"gpu_{idx}")
     
-    # Convertir metadatos a tipos compatibles (solo str, int, float, bool)
-    metadata = {}
-    for key, value in row.to_dict().items():
-        if pd.notna(value):
-            if isinstance(value, (int, float, bool)):
-                metadata[key] = value
-            else:
-                metadata[key] = str(value)
-    
-    metadatas.append(metadata)
+    # Convertir metadatos a tipos compatibles (solo str, int, float, bool)    
+    metadatas.append(clean_metadata(row))
     
     if (idx + 1) % 100 == 0:
         print(f"Procesadas {idx + 1} GPUs...")
 
-print("Generando embeddings y añadiendo a la colección...")
-embeddings = [model.encode(t).tolist() for t in texts]
+# Embeddings por lotes (batch)
+embeddings = model.encode(texts, batch_size=64, show_progress_bar=True)
+embeddings = embeddings.tolist()
 
 collection.add(
     documents=texts, 
