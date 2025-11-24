@@ -262,11 +262,11 @@ load_blip_model()
 # Ejecutar el scraping completo (sin guardar CSV)
 cards = scrape_vgamuseum_cards(BASE_URL)
 
-# Limitar a las primeras 10 para pruebas
-download_images_as_binary_rgb(cards[:10])
+# Limitar a las primeras 2 para pruebas
+download_images_as_binary_rgb(cards[:2])
 
-# Procesar las primeras 10 imágenes como ejemplo
-for card in cards[:10]:
+# Procesar las primeras 2 imágenes como ejemplo
+for card in cards[:2]:
     title = card["model"]
     img = card.get("image_rgb")
     if img is None:
