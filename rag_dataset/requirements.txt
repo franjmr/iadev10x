@@ -1,0 +1,8 @@
+bs4
+requests
+easyocr
+Pillow
+numpy
+transformers
+torch
+protobuf
