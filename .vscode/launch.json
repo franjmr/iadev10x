@@ -40,6 +40,15 @@
             "console": "integratedTerminal",
             "python": "${workspaceFolder}/rag_dataset/venv/Scripts/python.exe",
             "justMyCode": true
+        },
+        {
+            "name": "Python Debugger: agents_langgragph_sprites",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/agents_langgragph_sprites/venv/Scripts/python.exe",
+            "justMyCode": true
         }
     ]
 }

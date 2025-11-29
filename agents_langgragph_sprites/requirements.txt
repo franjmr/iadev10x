@@ -1,0 +1,13 @@
+# Agents and LangGraph
+langgraph>=0.0.20
+langchain>=0.3.0
+langchain-core>=0.3.0
+python-dotenv>=1.0.1
+pillow>=10.3.0
+
+# Stable Diffusion and Transformers
+diffusers>=0.29.0
+transformers>=4.40.0
+accelerate>=0.30.0
+torch>=2.2.0
+safetensors
