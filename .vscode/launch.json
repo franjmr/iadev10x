@@ -22,6 +22,24 @@
             "console": "integratedTerminal",
             "python": "${workspaceFolder}/h5_tf_openai_gradio/venv/Scripts/python.exe",
             "justMyCode": true
+        },
+        {
+            "name": "Python Debugger: rag_langchain",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/rag_langchain/venv/Scripts/python.exe",
+            "justMyCode": true
+        },
+        {
+            "name": "Python Debugger: rag_dataset",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/rag_dataset/venv/Scripts/python.exe",
+            "justMyCode": true
         }
     ]
 }
