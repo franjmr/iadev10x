@@ -4,6 +4,8 @@ from agents.generator import generate_sprite
 from agents.validator import validate_sprite   # o quítalo si no quieres OpenAI
 import os
 
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Estado compartido del grafo
 class SpriteState(dict):
     prompt: str
@@ -30,8 +32,8 @@ def node_validate(state: SpriteState):
 
 # ---- UTILIDAD PARA GUARDAR ----
 
-def save_sprite(image, path="output/sprite.png"):
-    os.makedirs("output", exist_ok=True)
+def save_sprite(image, path=os.path.join(CURRENT_DIR, "output", "sprite.png")):
+    os.makedirs(os.path.join(CURRENT_DIR, "output"), exist_ok=True)
     image.save(path)
     print(f"📁 Sprite guardado en {path}")
 
@@ -53,7 +55,7 @@ app = workflow.compile()
 # ---- MAIN ----
 
 if __name__ == "__main__":
-    prompt = "a small green slime 16x16 style"
+    prompt = "a brave knight with a sword and shield"
 
     result = app.invoke({"prompt": prompt})
 

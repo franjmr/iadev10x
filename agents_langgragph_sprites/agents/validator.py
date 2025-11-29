@@ -26,20 +26,25 @@ def validate_sprite(pil_image, prompt):
     )
 
     # Nueva estructura: input_text + input_image
-    response = client.responses.create(
-        model="gpt-4o-mini",
-        input=[
-            {
-                "role": "user",
-                "content": [
-                    {"type": "input_text", "text": query},
-                    {"type": "input_image", "image_url": img_url}
-                ]
-            }
-        ]
-    )
+    # response = client.responses.create(
+    #     model="gpt-4o-mini",
+    #     input=[
+    #         {
+    #             "role": "user",
+    #             "content": [
+    #                 {"type": "input_text", "text": query},
+    #                 {"type": "input_image", "image_url": img_url}
+    #             ]
+    #         }
+    #     ]
+    # )
+
+    # return {
+    #     "validation": response.output_text,
+    #     "sprite_b64": img_b64
+    # }
 
     return {
-        "validation": response.output_text,
+        "validation": "VALIDO (simulación)",
         "sprite_b64": img_b64
     }
